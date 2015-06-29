@@ -1,2 +1,13 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<h1>Edit Your Event</h1>
+<p> Hi, <%= current_user.name %></p>
+<p> you're editing your event</p>
+
+<%= link_to "Home",events_path, :class=>"btn btn-primary"%>
+
+
+<%= form_for @event, url: event_path(@event), :method=>:patch do |f|%>
+
+<%= render :partial =>'form', :locals  => {:f=>f} %>
+
+<%= f.submit "Post" %>
+<% end %>

@@ -1,2 +1,13 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<h1>New Event</h1>
+<p> Hi, <%= current_user.name %></p>
+<p> post you event</p>
+
+<%= link_to "Home",events_path, :class=>"btn btn-primary"%>
+
+
+<%= form_for @event, url: events_path do |f|%>
+
+<%= render :partial =>'form', :locals  => {:f=>f} %>
+
+<%= f.submit "Post" %>
+<% end %>

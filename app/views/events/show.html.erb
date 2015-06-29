@@ -1,2 +1,36 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h1><%=@event.name %></h1>
+<p>poster: <%= @event.user.name %></p>
+<p><%= link_to "back", events_path %>
+<table class="table">
+	<tr>
+		<td>title</td>
+		<td><%=@event.name %></td>
+	</tr>
+	<tr>
+		<td>content</td>
+		<td><%=@event.content %></td>
+	</tr>
+</table>
+
+
+
+<h2>Comments </h2>
+<table class="table">
+	<tr>
+		<td>content</td>
+		<td>poster</td>
+	</tr>
+	<%= @event.comments.each do |c|%>
+	<tr>
+		<td><%=c.content%></td>
+		<td><%=c.user%></td>
+	</tr>
+	<% end %>
+</table>
+
+
+
+
+
+
+

@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<%= yield %>
+<h3><%= flash[:notice] %></h3>
+<div class="container">
+	<%= yield %>
+<div class="container">
 
 </body>
 </html>
