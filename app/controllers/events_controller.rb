@@ -24,6 +24,13 @@ class EventsController < ApplicationController
 
   def show
 		@event = Event.find(params[:id])
+		@comments = @event.comments
+
+		unless params[:comment_id]
+			@comment = @event.comments.new
+		else
+			@comment = @event.comments.find(params[:comment_id])
+		end
   end
 
   def edit

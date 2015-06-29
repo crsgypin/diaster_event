@@ -19,15 +19,35 @@
 	<tr>
 		<td>content</td>
 		<td>poster</td>
+		<td></td>
 	</tr>
-	<%= @event.comments.each do |c|%>
+	<% @event.comments.each do |c|%>
 	<tr>
 		<td><%=c.content%></td>
 		<td><%=c.user%></td>
+		<% if @event.user == current_user %>
+			<td><%= link_to "edit", event_path(:comment_id=>c.id), :class=>"btn btn-primary" %></td>
+		<% end %>
 	</tr>
 	<% end %>
 </table>
 
+<% if @comment.new_record? %>
+	<%= form_for @comment, :url=>event_comments_path(@event)  do |f| %>
+
+	<%= f.label :content, "content"%>
+	<%= f.text_area :content %>
+	<%= f.submit %>
+
+	<% end %>
+
+<% else %>
+	<%= form_for @comment, :url=>event_comment_path(@event,@comment), :method=>"patch" do |f| %>
+	<%= f.label :content, "content"%>
+	<%= f.text_area :content %>
+	<%= f.submit %>
+	<% end %>
+<% end %>
 
 
 
