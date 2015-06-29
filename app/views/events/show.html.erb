@@ -20,13 +20,16 @@
 		<td>content</td>
 		<td>poster</td>
 		<td></td>
+		<td></td>
 	</tr>
 	<% @event.comments.each do |c|%>
 	<tr>
 		<td><%=c.content%></td>
-		<td><%=c.user%></td>
-		<% if @event.user == current_user %>
+		<td><%=c.user.try(:name)%></td>
+		<% if c.user == current_user %>
 			<td><%= link_to "edit", event_path(:comment_id=>c.id), :class=>"btn btn-primary" %></td>
+			<td><%= link_to "Delete", event_path(:comment_id=>c.id), :class=>"btn btn-danger" %></td>
+
 		<% end %>
 	</tr>
 	<% end %>
